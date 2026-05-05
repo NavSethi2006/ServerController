@@ -1,0 +1,8 @@
+ip:192.168.2.74
+broadcast:192.168.2.255
+port:31159
+targetip:192.168.2.90
+targetport:25565
+targetmac:00:23:ae:8c:cb:7d
+password:themostsecurepassword
+

@@ -1,0 +1,17 @@
+[21:09:00] [INFO] Creating Server
+[21:09:00] [INFO] TESTING INFO
+[21:09:00] [FAILED] TESTING FAILED
+[21:09:00] [SUCCESS] TESTING SUCCESS
+[21:09:00] [SUCCESS] Found label in config
+[21:09:00] [INFO] Retrieved ip from config
+[21:09:00] [SUCCESS] IP conversion successful
+[21:09:00] [SUCCESS] Found label in config
+[21:09:00] [INFO] Retreived port from config
+[21:09:00] [SUCCESS] Conversion from string to int
+[21:09:00] [SUCCESS] Found label in config
+[21:09:00] [INFO] Retreived password from config
+[21:09:00] [SUCCESS] Server creation
+[21:09:00] [INFO] Server details have been populated
+[21:09:00] [SUCCESS] Server binded
+[21:09:00] [INFO] Server listening on port 
+[21:09:00] [INFO] Server is ready
