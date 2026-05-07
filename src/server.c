@@ -77,10 +77,7 @@ void handle_client() {
     char client_buffer[10]; 
     while(client_listen) {
 
-        int result = recv(client_socket,
-                  client_buffer,
-                  sizeof(client_buffer) - 1,
-                  0);
+        int result = recv(client_socket, client_buffer, sizeof(client_buffer) - 1, 0);
         if(result < 0) {
             sprintf(infobuff, "Client at %s has left abruptly", ip);
             LOG(infobuff, INFO);
