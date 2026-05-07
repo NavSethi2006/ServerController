@@ -1,7 +1,5 @@
 #include "commands.h"
 
-
-
 void cmd_start(int client) {
 
 }

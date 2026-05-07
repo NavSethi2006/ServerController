@@ -34,34 +34,35 @@ int auth_handler(int client_socket) {
 
     LOG("Sending challenge to connected client", INFO);
 
-    sprintf(buffer, "CHALLENGE %s\n", challenge);
+    sprintf(buffer, "CHALLENGE %s", challenge);
     send(client_socket, buffer, strlen(buffer), 0);
     LOG("Receiving response", INFO);
 
-    int bytes = recv(client_socket, buffer, sizeof(buffer) - 1, 0);
+    int bytes = recv(client_socket, buffer, sizeof(buffer), 0);
+    printf("%s\n", buffer);
+
     if (bytes <= 0) {
         LOG("Response not received, kicking client", INFO);
         return 0;
     }
 
-    buffer[bytes] = '\0';
-    buffer[strcspn(buffer, "\r\n")] = '\0';
+char *received_hash = strchr(buffer, ' ');
 
-    char *received_hash = strchr(buffer, ' ');
     if (!received_hash) {
-        LOG("Invalid response format, kicking client", INFO);
+        LOG("Invalid response format", FAILED);
         return 0;
     }
 
-    received_hash++;
-    received_hash[strcspn(received_hash, "\n")] = '\0';
+    received_hash++; // move past space
+    received_hash[strcspn(received_hash, "\r\n")] = '\0';
 
     char combined[128];
-    sprintf(combined, "%s%s", global_config()->auth_password, challenge);
+    sprintf(combined, "%s%s", "themostsecurepassword", challenge);
     char expected_hash[65];
     sha256(combined, expected_hash);
 
     LOG("Computed expected hash: %s", INFO);
+    printf("Received hash: %s\n", received_hash);
     printf("Expected hash: %s\n", expected_hash);
 
     if (strcmp(received_hash, expected_hash) == 0) {

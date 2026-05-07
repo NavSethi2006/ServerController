@@ -1,85 +1,30 @@
-[11:18:07] [INFO] Creating Server
-[11:18:07] [INFO] TESTING INFO
-[11:18:07] [FAILED] TESTING FAILED
-[11:18:07] [SUCCESS] TESTING SUCCESS
-[11:18:07] [SUCCESS] Found label in config
-[11:18:07] [INFO] Retrieved ip from config
-[11:18:07] [SUCCESS] IP conversion successful
-[11:18:07] [SUCCESS] Found label in config
-[11:18:07] [INFO] Retreived port from config
-[11:18:07] [SUCCESS] Conversion from string to int
-[11:18:07] [SUCCESS] Found label in config
-[11:18:07] [INFO] Retreived password from config
-[11:18:07] [SUCCESS] Found label in config
-[11:18:07] [INFO] Retreived mac for WOL server from config
-[11:18:07] [SUCCESS] Server creation
-[11:18:07] [INFO] Server details have been populated
-[11:18:07] [SUCCESS] Server binded
-[11:18:07] [INFO] Server listening on port 
-[11:18:07] [INFO] Server is ready
-[11:18:14] [INFO] Client at 192.168.2.74 is trying to connect to the server, sending authentication
-[11:18:14] [INFO] Sending challenge to connected client
-[11:18:14] [INFO] Receiving response
-[11:18:14] [INFO] Computed expected hash: %s
-[11:18:14] [INFO] Authentication failed
-[11:18:14] [INFO] Client at 192.168.2.74 has failed authentication
-[11:18:16] [INFO] Client at 192.168.2.74 is trying to connect to the server, sending authentication
-[11:18:16] [INFO] Sending challenge to connected client
-[11:18:16] [INFO] Receiving response
-[11:18:16] [INFO] Computed expected hash: %s
-[11:18:16] [INFO] Authentication failed
-[11:18:16] [INFO] Client at 192.168.2.74 has failed authentication
-[11:18:23] [INFO] Client at 192.168.2.74 is trying to connect to the server, sending authentication
-[11:18:23] [INFO] Sending challenge to connected client
-[11:18:23] [INFO] Receiving response
-[11:18:23] [INFO] Computed expected hash: %s
-[11:18:23] [INFO] Authentication failed
-[11:18:23] [INFO] Client at 192.168.2.74 has failed authentication
-[11:27:21] [INFO] Client at 192.168.2.74 is trying to connect to the server, sending authentication
-[11:27:21] [INFO] Sending challenge to connected client
-[11:27:21] [INFO] Receiving response
-[11:27:21] [INFO] Computed expected hash: %s
-[11:27:21] [INFO] Authentication failed
-[11:27:21] [INFO] Client at 192.168.2.74 has failed authentication
-[11:27:51] [INFO] Client at 192.168.2.74 is trying to connect to the server, sending authentication
-[11:27:51] [INFO] Sending challenge to connected client
-[11:27:51] [INFO] Receiving response
-[11:27:51] [INFO] Computed expected hash: %s
-[11:27:51] [INFO] Authentication failed
-[11:27:51] [INFO] Client at 192.168.2.74 has failed authentication
-[11:27:56] [INFO] Client at 192.168.2.74 is trying to connect to the server, sending authentication
-[11:27:56] [INFO] Sending challenge to connected client
-[11:27:56] [INFO] Receiving response
-[11:27:56] [INFO] Computed expected hash: %s
-[11:27:56] [INFO] Authentication failed
-[11:27:56] [INFO] Client at 192.168.2.74 has failed authentication
-[11:28:05] [INFO] Client at 192.168.2.74 is trying to connect to the server, sending authentication
-[11:28:05] [INFO] Sending challenge to connected client
-[11:28:05] [INFO] Receiving response
-[11:28:05] [INFO] Computed expected hash: %s
-[11:28:05] [INFO] Authentication failed
-[11:28:05] [INFO] Client at 192.168.2.74 has failed authentication
-[11:28:22] [INFO] Client at 192.168.2.74 is trying to connect to the server, sending authentication
-[11:28:22] [INFO] Sending challenge to connected client
-[11:28:22] [INFO] Receiving response
-[11:28:22] [INFO] Computed expected hash: %s
-[11:28:22] [INFO] Authentication failed
-[11:28:22] [INFO] Client at 192.168.2.74 has failed authentication
-[11:32:58] [INFO] Client at 192.168.2.74 is trying to connect to the server, sending authentication
-[11:32:58] [INFO] Sending challenge to connected client
-[11:32:58] [INFO] Receiving response
-[11:32:58] [INFO] Computed expected hash: %s
-[11:32:58] [INFO] Authentication failed
-[11:32:58] [INFO] Client at 192.168.2.74 has failed authentication
-[11:33:18] [INFO] Client at 192.168.2.74 is trying to connect to the server, sending authentication
-[11:33:18] [INFO] Sending challenge to connected client
-[11:33:18] [INFO] Receiving response
-[11:33:18] [INFO] Computed expected hash: %s
-[11:33:18] [INFO] Authentication failed
-[11:33:18] [INFO] Client at 192.168.2.74 has failed authentication
-[11:33:24] [INFO] Client at 192.168.2.74 is trying to connect to the server, sending authentication
-[11:33:24] [INFO] Sending challenge to connected client
-[11:33:24] [INFO] Receiving response
-[11:33:24] [INFO] Computed expected hash: %s
-[11:33:24] [INFO] Authentication failed
-[11:33:24] [INFO] Client at 192.168.2.74 has failed authentication
+[17:25:00] [INFO] Creating Server
+[17:25:00] [INFO] TESTING INFO
+[17:25:00] [FAILED] TESTING FAILED
+[17:25:00] [SUCCESS] TESTING SUCCESS
+[17:25:00] [SUCCESS] Found label in config
+[17:25:00] [INFO] Retrieved ip from config
+[17:25:00] [SUCCESS] IP conversion successful
+[17:25:00] [SUCCESS] Found label in config
+[17:25:00] [INFO] Retreived port from config
+[17:25:00] [SUCCESS] Conversion from string to int
+[17:25:00] [SUCCESS] Found label in config
+[17:25:00] [INFO] Retreived mac for WOL server from config
+[17:25:00] [SUCCESS] Server creation
+[17:25:00] [INFO] Server details have been populated
+[17:25:00] [SUCCESS] Server binded
+[17:25:00] [INFO] Server listening on port 
+[17:25:00] [INFO] Server is ready
+[17:25:05] [INFO] Client at 10.82.81.56 is trying to connect to the server, sending authentication
+[17:25:05] [INFO] Sending challenge to connected client
+[17:25:05] [INFO] Receiving response
+[17:25:05] [INFO] Computed expected hash: %s
+[17:25:05] [INFO] Authentication failed
+[17:25:05] [INFO] Client at 10.82.81.56 has failed authentication
+[17:25:11] [INFO] Client at 10.82.81.56 is trying to connect to the server, sending authentication
+[17:25:11] [INFO] Sending challenge to connected client
+[17:25:11] [INFO] Receiving response
+[17:25:11] [INFO] Computed expected hash: %s
+[17:25:11] [SUCCESS] Authentication successful
+[17:25:11] [INFO] Accepted client at ip:10.82.81.56 
+

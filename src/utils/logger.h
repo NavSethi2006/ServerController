@@ -1,12 +1,12 @@
 #ifndef LOGGER_H
-#define LOGGER_h
+#define LOGGER_H
 
 #include <stdio.h>
 #include <time.h>
 #include <unistd.h>
 #include <string.h>
 
-typedef enum LOGGING_STATUS {
+typedef enum {
     SUCCESS,
     FAILED,
     INFO
@@ -14,6 +14,5 @@ typedef enum LOGGING_STATUS {
 
 void create_log();
 void LOG(char* to_log, STATUS status);
-void LOG_IP_ADDR(char *infobuff, char* ip_to_log);
 
 #endif

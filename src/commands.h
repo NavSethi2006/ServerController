@@ -12,7 +12,7 @@ typedef void (*command_func)(int client);
 typedef struct {
     const char *name;
     command_func func;
-}Command;
+} Command;
 
 void cmd_start(int client);
 void cmd_stop(int client);

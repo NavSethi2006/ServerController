@@ -43,7 +43,7 @@ void load_port() {
 void load_auth_password() {
     char *read = read_file_configs("password");
     LOG("Retreived password from config", INFO);
-    config->auth_password = read;
+
     free(read);
 
 }
@@ -83,7 +83,6 @@ void load_all() {
 
     load_ip();
     load_port();
-    load_auth_password();
     load_wolmac();
 }
 

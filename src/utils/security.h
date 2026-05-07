@@ -8,6 +8,7 @@
 #include <string.h>
 #include <time.h>
 #include <unistd.h>
+#include "logger.h"
 
 #include "configs.h"
 
