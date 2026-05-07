@@ -1,24 +1,32 @@
 #include "commands.h"
 
+
+
 void cmd_start(int client) {
 
 }
 
-// build magic packet and send it to the server to wake up
-int send_wol() {
-    // build magic packet #FF
-    unsigned char* packet;
+void build_wol_packet(unsigned char *packet) {
+        // build magic packet #FF
     for(int i = 0; i < 6; i++)
         packet[i] = 0XFF;
     for(int i = 0;i < 16; i++)
         memcpy(packet+6+(i*6), global_config()->wolmac, 6);
 
     LOG("Magic packet created", INFO);
+
+}
+
+// build magic packet and send it to the server to wake up
+int send_wol() {
+
     LOG("Creating datagram packet", INFO);
     
     int sock;
     struct sockaddr_in addr;
     unsigned char packet[102];
+
+    build_wol_packet(packet);
 
     sock = socket(AF_INET, SOCK_DGRAM, 0);
     if(sock < 0) {

@@ -14,5 +14,6 @@ typedef enum LOGGING_STATUS {
 
 void create_log();
 void LOG(char* to_log, STATUS status);
+void LOG_IP_ADDR(char *infobuff, char* ip_to_log);
 
 #endif

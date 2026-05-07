@@ -1,3 +1,6 @@
+#ifndef COMMANDS_H
+#define COMMANDS_H
+
 #include <stdio.h>
 #include <string.h>
 #include <arpa/inet.h>
@@ -15,7 +18,9 @@ void cmd_start(int client);
 void cmd_stop(int client);
 void handle_commands(char *cmd, int client);
 
-Command commands[] = {
+static Command commands[2] = {
     {"START", cmd_start},
     {"STOP", cmd_stop}
 };
+
+#endif

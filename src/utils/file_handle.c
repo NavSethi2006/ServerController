@@ -6,8 +6,8 @@ void write_file(FILE *fp, const char *string) {
     fflush(fp);
 }
 
-FILE *fp;
 
+FILE *fp;
 FILE *setup_config() {
     fp = fopen("config/config.txt", "a+");
     if(!fp) {
@@ -53,4 +53,6 @@ char* read_file_configs(const char* label) {
     LOG("Label not found in config", FAILED);
     return NULL;
 }
+
+
 

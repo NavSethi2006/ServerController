@@ -1,13 +1,24 @@
 #include "server.h"
 
+#define MAX_CONNECTION 5
+
 int serverfd, client_socket;
 struct sockaddr_in server_address, client_addr;
 int addrlen;
 pthread_t server_thread;
+char ip[INET_ADDRSTRLEN];
+
+volatile __sig_atomic_t shutdown_flag = 0;
+
+void handle_sigint(int signum) {
+    shutdown_flag = 1;
+}
 
 void setup_server() {
+    signal(SIGINT, handle_sigint);
+
     serverfd = socket(AF_INET, SOCK_STREAM, 0);
-    if(serverfd == 0) {
+    if(serverfd < 0) {
         LOG("CRITICAL LINE 13 server.c: Server creation, Exiting....", FAILED);
         exit(EXIT_FAILURE);
     } else {
@@ -34,9 +45,16 @@ void setup_server() {
     LOG("Server listening on port ", INFO);
     LOG("Server is ready", INFO);
     addrlen = sizeof(server_address);
-    while(1) {
+    while(!shutdown_flag) {
         client_socket = accept(serverfd, (struct sockaddr *)&client_addr, (socklen_t*)&addrlen);
-        if(!auth_handler(client_socket)) {
+        inet_ntop(AF_INET, &client_addr.sin_addr, ip, sizeof(ip));
+        char infobuff[100];
+
+        sprintf(infobuff, "Client at %s is trying to connect to the server, sending authentication", ip);
+        LOG(infobuff, INFO);
+        if(auth_handler(client_socket) == 0) {
+            sprintf(infobuff, "Client at %s has failed authentication", ip);
+            LOG(infobuff, INFO);
             close(client_socket);
             continue;
         }
@@ -46,12 +64,11 @@ void setup_server() {
             continue;
         }
     }
+    close(serverfd);
 }
 
 void handle_client() {
     char infobuff[31+32];
-    char ip[INET_ADDRSTRLEN];
-    inet_ntop(AF_INET, &client_addr.sin_addr, ip, sizeof(ip));
     sprintf(infobuff, "Accepted client at ip:%s \n", ip);
     LOG(infobuff, INFO);
 
@@ -60,7 +77,7 @@ void handle_client() {
     char client_buffer[10]; 
     while(client_listen) {
 
-        int result = recv(client_socket, client_buffer, sizeof(client_buffer), MSG_PEEK);
+        int result = recv(client_socket, client_buffer, sizeof(client_buffer), 0);
         if(result < 0) {
             sprintf(infobuff, "Client at %s has left abruptly", ip);
             LOG(infobuff, INFO);
@@ -80,5 +97,7 @@ void handle_client() {
         }
 
     }
+
+    close(client_socket);
     
 }
