@@ -1,0 +1,36 @@
+[23:47:58] [INFO] Creating Server
+[23:47:58] [INFO] TESTING INFO
+[23:47:58] [FAILED] TESTING FAILED
+[23:47:58] [SUCCESS] TESTING SUCCESS
+[23:47:58] [SUCCESS] Found label in config
+[23:47:58] [SUCCESS] Loaded server IP
+[23:47:58] [SUCCESS] Found label in config
+[23:47:58] [SUCCESS] Loaded broadcast IP
+[23:47:58] [SUCCESS] Found label in config
+[23:47:58] [SUCCESS] Loaded target IP
+[23:47:58] [SUCCESS] Found label in config
+[23:47:58] [SUCCESS] Loaded server port
+[23:47:58] [SUCCESS] Found label in config
+[23:47:58] [SUCCESS] Loaded target port
+[23:47:58] [SUCCESS] Found label in config
+[23:47:58] [SUCCESS] Loaded auth password
+[23:47:58] [SUCCESS] Found label in config
+[23:47:58] [SUCCESS] Loaded WOL MAC
+[23:47:58] [SUCCESS] All configs loaded
+[23:47:58] [SUCCESS] Server creation
+[23:47:58] [INFO] Server details have been populated
+[23:47:58] [SUCCESS] Server binded
+[23:47:58] [INFO] Server listening on port 
+[23:47:58] [INFO] Server is ready
+[23:48:08] [INFO] Client at 192.168.2.74 is trying to connect to the server, sending authentication
+[23:48:08] [INFO] Sending challenge to connected client
+[23:48:08] [INFO] Receiving response
+[23:48:08] [INFO] Computed expected hash: %s
+[23:48:08] [SUCCESS] Authentication successful
+[23:48:08] [INFO] Accepted client at ip:192.168.2.74 
+
+[23:48:11] [INFO] Creating datagram packet
+[23:48:11] [INFO] Magic packet created
+[23:48:11] [INFO] Server address populated, sending packet...
+[23:48:11] [SUCCESS] The packet has been sent to the server wait 6 seconds then ping
+[23:48:47] [INFO] Client at 192.168.2.74 has left abruptly

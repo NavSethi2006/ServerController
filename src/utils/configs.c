@@ -3,91 +3,222 @@
 CONFIG *config;
 
 void load_ip() {
+
     char *read = read_file_configs("ip");
-    if (!read) {
-        LOG("Failed to read IP from config", FAILED);
-        config->ip = 0;
-        return;
+
+    if(!read) {
+
+        LOG("Failed to read ip", FAILED);
+
+        exit(EXIT_FAILURE);
     }
-    LOG("Retrieved ip from config", INFO);
+
     struct in_addr addr;
-    if (inet_pton(AF_INET, read, &addr) != 1) {
+
+    if(inet_pton(AF_INET, read, &addr) != 1) {
+
         LOG("Invalid IP format", FAILED);
-        config->ip = 0;
+
         free(read);
-        return;
+
+        exit(EXIT_FAILURE);
     }
+
     config->ip = addr.s_addr;
-    LOG("IP conversion successful", SUCCESS);
+
+    LOG("Loaded server IP", SUCCESS);
+
+    free(read);
+}
+
+void load_broadcastip() {
+
+    char *read = read_file_configs("broadcast");
+
+    if(!read) {
+
+        LOG("Failed to read broadcast ip", FAILED);
+
+        exit(EXIT_FAILURE);
+    }
+
+    struct in_addr addr;
+
+    if(inet_pton(AF_INET, read, &addr) != 1) {
+
+        LOG("Invalid broadcast IP", FAILED);
+
+        free(read);
+
+        exit(EXIT_FAILURE);
+    }
+
+    config->broadcastip = addr.s_addr;
+
+    LOG("Loaded broadcast IP", SUCCESS);
+
+    free(read);
+}
+
+void load_targetip() {
+
+    char *read = read_file_configs("targetip");
+
+    if(!read) {
+
+        LOG("Failed to read target IP", FAILED);
+
+        exit(EXIT_FAILURE);
+    }
+
+    struct in_addr addr;
+
+    if(inet_pton(AF_INET, read, &addr) != 1) {
+
+        LOG("Invalid target IP", FAILED);
+
+        free(read);
+
+        exit(EXIT_FAILURE);
+    }
+
+    config->targetip = addr.s_addr;
+
+    LOG("Loaded target IP", SUCCESS);
+
     free(read);
 }
 
 void load_port() {
-    char *read = read_file_configs("port");
-    LOG("Retreived port from config", INFO);
-    char *endptr;
-    unsigned long val = strtoul(read, &endptr, 10);
 
-    if(endptr == read || *endptr != '\0' || val > UINT16_MAX) {
-        LOG("Conversion from string to int has failed, cant get port number", FAILED);
-        config->port = 0;
-    } else {
-        uint16_t result = (uint16_t)val;
-        LOG("Conversion from string to int", SUCCESS);
-        config->port = result;
+    char *read = read_file_configs("port");
+
+    if(!read) {
+
+        LOG("Failed to read port", FAILED);
+
+        exit(EXIT_FAILURE);
     }
+
+    config->port = (uint16_t)atoi(read);
+
+    LOG("Loaded server port", SUCCESS);
+
+    free(read);
+}
+
+void load_targetport() {
+
+    char *read = read_file_configs("targetport");
+
+    if(!read) {
+
+        LOG("Failed to read target port", FAILED);
+
+        exit(EXIT_FAILURE);
+    }
+
+    config->targetport = (uint16_t)atoi(read);
+
+    LOG("Loaded target port", SUCCESS);
 
     free(read);
 }
 
 void load_auth_password() {
+
     char *read = read_file_configs("password");
-    LOG("Retreived password from config", INFO);
+
+    if(!read) {
+
+        LOG("Failed to read password", FAILED);
+
+        exit(EXIT_FAILURE);
+    }
+
+    strncpy(config->auth_password,
+            read,
+            sizeof(config->auth_password) - 1);
+
+    config->auth_password[
+        sizeof(config->auth_password) - 1
+    ] = '\0';
+
+    config->auth_password[
+        strcspn(config->auth_password, "\r\n")
+    ] = '\0';
+
+    LOG("Loaded auth password", SUCCESS);
 
     free(read);
-
 }
 
 void load_wolmac() {
-    char *read = read_file_configs("targetmac");
-    LOG("Retreived mac for WOL server from config", INFO);
-    config->wolmac = read;
-    free(read);
-}
 
-void load_targetip() {
-    char *read = read_file_configs("mac");
-    if (!read) {
-        LOG("Failed to read MAC from config", FAILED);
-        return;
+    char *read = read_file_configs("targetmac");
+
+    if(!read) {
+
+        LOG("Failed to read MAC", FAILED);
+
+        exit(EXIT_FAILURE);
     }
-    uint8_t mac[6];
-    int ret_val = sscanf(read, "%hhx:%hhx:%hhx:%hhx:%hhx:%hhx",
-                  &mac[0], &mac[1], &mac[2],
-                  &mac[3], &mac[4], &mac[5]) == 6;
-    if (!ret_val) {
+
+    int result = sscanf(read,
+                        "%hhx:%hhx:%hhx:%hhx:%hhx:%hhx",
+
+                        &config->wolmac[0],
+                        &config->wolmac[1],
+                        &config->wolmac[2],
+                        &config->wolmac[3],
+                        &config->wolmac[4],
+                        &config->wolmac[5]);
+
+    if(result != 6) {
+
         LOG("Invalid MAC format", FAILED);
+
         free(read);
-        return;
+
+        exit(EXIT_FAILURE);
     }
-    LOG("MAC parsed successfully", SUCCESS);
+
+    LOG("Loaded WOL MAC", SUCCESS);
+
     free(read);
 }
 
 void load_all() {
+
     config = malloc(sizeof(CONFIG));
-    if (!config) {
-        LOG("CRITICAL : Not enough memory for CONFIG", FAILED);
+
+    if(!config) {
+
+        LOG("Failed to allocate CONFIG", FAILED);
+
         exit(EXIT_FAILURE);
     }
 
+    memset(config, 0, sizeof(CONFIG));
+
     load_ip();
+
+    load_broadcastip();
+
+    load_targetip();
+
     load_port();
+
+    load_targetport();
+
+    load_auth_password();
+
     load_wolmac();
+
+    LOG("All configs loaded", SUCCESS);
 }
 
-
-
 CONFIG *global_config() {
+
     return config;
 }

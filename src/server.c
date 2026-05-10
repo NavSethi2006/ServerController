@@ -86,6 +86,7 @@ void handle_client() {
         } else {
             sprintf(infobuff,"Recived server instruction from client. Instruction being : %s", client_buffer);
             int count = sizeof(commands) / sizeof(Command);
+            printf("%s\n", client_buffer);
             for(int i = 0; i < count; i++) {
                 if(strcmp(client_buffer, commands[i].name) == 0) {
                     commands[i].func(client_socket);

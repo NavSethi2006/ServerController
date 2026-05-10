@@ -14,12 +14,12 @@ typedef struct {
     command_func func;
 } Command;
 
-void cmd_start(int client);
+void send_wol(int client);
 void cmd_stop(int client);
 void handle_commands(char *cmd, int client);
 
 static Command commands[2] = {
-    {"START", cmd_start},
+    {"START", send_wol},
     {"STOP", cmd_stop}
 };
 

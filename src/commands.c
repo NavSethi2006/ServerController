@@ -1,7 +1,6 @@
 #include "commands.h"
 
 void cmd_start(int client) {
-
 }
 
 void build_wol_packet(unsigned char *packet) {
@@ -16,7 +15,7 @@ void build_wol_packet(unsigned char *packet) {
 }
 
 // build magic packet and send it to the server to wake up
-int send_wol() {
+void send_wol(int client) {
 
     LOG("Creating datagram packet", INFO);
     
@@ -28,8 +27,7 @@ int send_wol() {
 
     sock = socket(AF_INET, SOCK_DGRAM, 0);
     if(sock < 0) {
-        LOG("CRITICAL (Line 25 commands.c): cannot creating socket for datagram", FAILED);
-        return -1;
+        LOG("CRITICAL (Line 31 commands.c): cannot creating socket for datagram", FAILED);
     }
 
     int broadcast = 1;
@@ -37,7 +35,7 @@ int send_wol() {
 
     addr.sin_family = AF_INET;
     addr.sin_port = htons(9);
-    addr.sin_addr.s_addr = global_config()->targetip;
+    addr.sin_addr.s_addr = global_config()->broadcastip;
 
     LOG("Server address populated, sending packet...", INFO);
     
@@ -45,16 +43,11 @@ int send_wol() {
     if(result < 0) {
         LOG("CRITICAL (Line 39 commands.c): cannot send packet to local client", FAILED);
         close(sock);
-        return -1;
     }
     LOG("The packet has been sent to the server wait 6 seconds then ping", SUCCESS);
     close(sock);
 }
 
 void cmd_stop(int client) {
-
-}
-
-void handle_commands(char *cmd, int client) {
 
 }
