@@ -1,0 +1,38 @@
+[00:02:20] [INFO] Creating Server
+[00:02:20] [INFO] TESTING INFO
+[00:02:20] [FAILED] TESTING FAILED
+[00:02:20] [SUCCESS] TESTING SUCCESS
+[00:02:20] [SUCCESS] Found label in config
+[00:02:20] [SUCCESS] Loaded server IP
+[00:02:20] [SUCCESS] Found label in config
+[00:02:20] [SUCCESS] Loaded broadcast IP
+[00:02:20] [SUCCESS] Found label in config
+[00:02:20] [SUCCESS] Loaded target IP
+[00:02:20] [SUCCESS] Found label in config
+[00:02:20] [SUCCESS] Loaded server port
+[00:02:20] [SUCCESS] Found label in config
+[00:02:20] [SUCCESS] Loaded target port
+[00:02:20] [SUCCESS] Found label in config
+[00:02:20] [SUCCESS] Loaded auth password
+[00:02:20] [SUCCESS] Found label in config
+[00:02:20] [SUCCESS] Loaded WOL MAC
+[00:02:20] [SUCCESS] All configs loaded
+[00:02:20] [SUCCESS] Server creation
+[00:02:20] [INFO] Server details have been populated
+[00:02:20] [SUCCESS] Server binded
+[00:02:20] [INFO] Server listening on port 
+[00:02:20] [INFO] Server is ready
+[00:03:03] [INFO] Client at 192.168.2.74 is trying to connect to the server, sending authentication
+[00:03:03] [INFO] Sending challenge to connected client
+[00:03:03] [INFO] Receiving response
+[00:03:03] [INFO] Computed expected hash: %s
+[00:03:03] [INFO] Authentication failed
+[00:03:03] [INFO] Client at 192.168.2.74 has failed authentication
+[00:03:27] [INFO] Client at 192.168.2.74 is trying to connect to the server, sending authentication
+[00:03:27] [INFO] Sending challenge to connected client
+[00:03:27] [INFO] Receiving response
+[00:03:27] [INFO] Computed expected hash: %s
+[00:03:27] [SUCCESS] Authentication successful
+[00:03:27] [INFO] Accepted client at ip:192.168.2.74 
+
+[00:03:31] [INFO] Client at 192.168.2.74 has left abruptly

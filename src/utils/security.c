@@ -56,7 +56,7 @@ char *received_hash = strchr(buffer, ' ');
     received_hash[strcspn(received_hash, "\r\n")] = '\0';
 
     char combined[128];
-    sprintf(combined, "%s%s", "themostsecurepassword", challenge);
+    sprintf(combined, "%s%s", global_config()->auth_password, challenge);
     char expected_hash[65];
     sha256(combined, expected_hash);
 
