@@ -4,4 +4,4 @@ port:31159
 targetip:192.168.2.90
 targetport:8080
 targetmac:00:23:ae:8c:cb:7d
-password:themostsecurepassword
+password:niItj#tN26t8
