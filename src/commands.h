@@ -16,7 +16,6 @@ typedef struct {
 
 void send_wol(int client);
 void cmd_stop(int client);
-void handle_commands(char *cmd, int client);
 
 static Command commands[2] = {
     {"START", send_wol},

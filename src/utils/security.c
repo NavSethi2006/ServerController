@@ -39,7 +39,6 @@ int auth_handler(int client_socket) {
     LOG("Receiving response", INFO);
 
     int bytes = recv(client_socket, buffer, sizeof(buffer), 0);
-    printf("%s\n", buffer);
 
     if (bytes <= 0) {
         LOG("Response not received, kicking client", INFO);
@@ -62,8 +61,6 @@ char *received_hash = strchr(buffer, ' ');
     sha256(combined, expected_hash);
 
     LOG("Computed expected hash: %s", INFO);
-    printf("Received hash: %s\n", received_hash);
-    printf("Expected hash: %s\n", expected_hash);
 
     if (strcmp(received_hash, expected_hash) == 0) {
         LOG("Authentication successful", SUCCESS);

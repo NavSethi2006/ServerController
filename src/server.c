@@ -1,6 +1,6 @@
 #include "server.h"
 
-#define MAX_CONNECTION 5
+#define IDLE_TIMEOUT 600
 
 int serverfd, client_socket;
 struct sockaddr_in server_address, client_addr;
@@ -64,10 +64,15 @@ void setup_server() {
             continue;
         }
     }
+
     close(serverfd);
 }
 
 void handle_client() {
+    time_t last_activity_time = time(NULL);
+    fd_set read_fds;
+    struct timeval timeout;
+
     char infobuff[31+32];
     sprintf(infobuff, "Accepted client at ip:%s \n", ip);
     LOG(infobuff, INFO);
@@ -76,27 +81,46 @@ void handle_client() {
 
     char client_buffer[10]; 
     while(client_listen) {
+        FD_ZERO(&read_fds);
+        FD_SET(client_socket, &read_fds);
 
-        int result = recv(client_socket, client_buffer, sizeof(client_buffer) - 1, 0);
-        if(result < 0) {
-            sprintf(infobuff, "Client at %s has left abruptly", ip);
-            LOG(infobuff, INFO);
-            client_listen = false;
+        timeout.tv_sec = IDLE_TIMEOUT;
+        timeout.tv_usec = 0;
+
+        int activity = select(client_socket + 1, &read_fds, NULL, NULL, &timeout);
+
+        if (activity < 0) {
+            close(client_socket);
+            break;
+        } else if (activity == 0) {
+            printf("Client idle for %d seconds, closing connection.\n", IDLE_TIMEOUT);
+            close(client_socket);
             break;
         } else {
-            sprintf(infobuff,"Recived server instruction from client. Instruction being : %s", client_buffer);
-            int count = sizeof(commands) / sizeof(Command);
-            printf("%s\n", client_buffer);
-            for(int i = 0; i < count; i++) {
-                if(strcmp(client_buffer, commands[i].name) == 0) {
-                    commands[i].func(client_socket);
-                } else {
-                    send(client_socket, "UNKNOWN COMMAND\n", 16, 0);
+            memset(client_buffer, '\0', sizeof(client_buffer));
+            int result = recv(client_socket, client_buffer, sizeof(client_buffer) - 1, 0);
+            if(result == 0) {
+                sprintf(infobuff, "Client at %s has left abruptly", ip);
+                LOG(infobuff, INFO);
+                client_listen = false;
+                break;
+            } else {
+                client_buffer[result] = '\0';
+
+                int count = sizeof(commands) / sizeof(Command);
+                bool found = false;
+                for (int i = 0; i < count; i++) {
+                    if (strcmp(client_buffer, commands[i].name) == 0) {
+                        commands[i].func(client_socket);
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found) {
+                    LOG("UNKNOWN COMMAND", FAILED);
                 }
             }
-
         }
-
     }
 
     close(client_socket);

@@ -9,6 +9,7 @@
 #include <unistd.h>
 #include <arpa/inet.h>
 #include <pthread.h>
+#include <sys/select.h>
 #include "utils/file_handle.h"
 #include "utils/logger.h"
 #include "utils/configs.h"
